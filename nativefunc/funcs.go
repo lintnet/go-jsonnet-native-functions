@@ -25,6 +25,7 @@ func SetAll(vm *jsonnet.VM) {
 
 // Set sets given Native Functions to VM.
 // names is a list of Native Function names such as "strings.contains".
+// If a given Native Function isn't found, the error ErrUnknownFunction is returned.
 func Set(vm *jsonnet.VM, names ...string) error {
 	allFuncs := make(map[string]*jsonnet.NativeFunction, len(funcList))
 	for _, fc := range funcList {
