@@ -1,4 +1,4 @@
-package nativefunc_test
+package regexp_test
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/google/go-jsonnet"
-	"github.com/suzuki-shunsuke/go-jsonnet-native-functions/nativefunc"
+	"github.com/suzuki-shunsuke/go-jsonnet-native-functions/native/regexp"
 )
 
 func TestMatch(t *testing.T) {
@@ -38,7 +38,7 @@ func TestMatch(t *testing.T) {
 		},
 	}
 	vm := jsonnet.MakeVM()
-	nativefunc.SetAll(vm)
+	vm.NativeFunction(regexp.MatchString("regexp.match"))
 	for _, d := range data {
 		d := d
 		t.Run(d.name, func(t *testing.T) {
