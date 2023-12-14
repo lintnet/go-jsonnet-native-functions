@@ -1,4 +1,4 @@
-package nativefunc
+package strings
 
 import (
 	"fmt"
@@ -8,9 +8,9 @@ import (
 	"github.com/google/go-jsonnet/ast"
 )
 
-func contains() *jsonnet.NativeFunction {
+func Contains(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
-		Name:   "strings.contains",
+		Name:   name,
 		Params: ast.Identifiers{"s", "substr"},
 		Func: func(s []interface{}) (interface{}, error) {
 			s0, ok := s[0].(string)
@@ -26,9 +26,9 @@ func contains() *jsonnet.NativeFunction {
 	}
 }
 
-func trimSpace() *jsonnet.NativeFunction {
+func TrimSpace(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
-		Name:   "strings.trimSpace",
+		Name:   name,
 		Params: ast.Identifiers{"s"},
 		Func: func(s []interface{}) (interface{}, error) {
 			s0, ok := s[0].(string)
@@ -40,9 +40,9 @@ func trimSpace() *jsonnet.NativeFunction {
 	}
 }
 
-func trimPrefix() *jsonnet.NativeFunction {
+func TrimPrefix(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
-		Name:   "strings.trimPrefix",
+		Name:   name,
 		Params: ast.Identifiers{"s", "prefix"},
 		Func: func(s []interface{}) (interface{}, error) {
 			s0, ok := s[0].(string)

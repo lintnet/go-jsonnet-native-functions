@@ -1,4 +1,4 @@
-package nativefunc
+package regexp
 
 import (
 	"fmt"
@@ -8,9 +8,9 @@ import (
 	"github.com/google/go-jsonnet/ast"
 )
 
-func regexMatch() *jsonnet.NativeFunction {
+func MatchString(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
-		Name:   "regexp.match",
+		Name:   name,
 		Params: ast.Identifiers{"pattern", "s"},
 		Func: func(s []interface{}) (interface{}, error) {
 			pattern, ok := s[0].(string)

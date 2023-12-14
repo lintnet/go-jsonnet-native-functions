@@ -1,4 +1,4 @@
-package nativefunc_test
+package strings_test
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/google/go-jsonnet"
-	"github.com/suzuki-shunsuke/go-jsonnet-native-functions/nativefunc"
+	nstrings "github.com/suzuki-shunsuke/go-jsonnet-native-functions/pkg/strings"
 )
 
 func TestContains(t *testing.T) { //nolint:dupl
@@ -31,7 +31,7 @@ func TestContains(t *testing.T) { //nolint:dupl
 		},
 	}
 	vm := jsonnet.MakeVM()
-	nativefunc.SetAll(vm)
+	vm.NativeFunction(nstrings.Contains("strings.contains"))
 	for _, d := range data {
 		d := d
 		t.Run(d.name, func(t *testing.T) {
@@ -71,7 +71,7 @@ func TestTrimPrefix(t *testing.T) { //nolint:dupl
 		},
 	}
 	vm := jsonnet.MakeVM()
-	nativefunc.SetAll(vm)
+	vm.NativeFunction(nstrings.TrimPrefix("strings.trimPrefix"))
 	for _, d := range data {
 		d := d
 		t.Run(d.name, func(t *testing.T) {
@@ -105,7 +105,7 @@ func TestTrimSpace(t *testing.T) {
 		},
 	}
 	vm := jsonnet.MakeVM()
-	nativefunc.SetAll(vm)
+	vm.NativeFunction(nstrings.TrimSpace("strings.trimSpace"))
 	for _, d := range data {
 		d := d
 		t.Run(d.name, func(t *testing.T) {

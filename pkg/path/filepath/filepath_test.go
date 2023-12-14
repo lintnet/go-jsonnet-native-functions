@@ -1,4 +1,4 @@
-package nativefunc_test
+package filepath_test
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/google/go-jsonnet"
-	"github.com/suzuki-shunsuke/go-jsonnet-native-functions/nativefunc"
+	"github.com/suzuki-shunsuke/go-jsonnet-native-functions/pkg/path/filepath"
 )
 
 func TestBase(t *testing.T) {
@@ -23,7 +23,8 @@ func TestBase(t *testing.T) {
 		},
 	}
 	vm := jsonnet.MakeVM()
-	nativefunc.SetAll(vm)
+	vm.NativeFunction(filepath.Base("path/filepath.base"))
+
 	for _, d := range data {
 		d := d
 		t.Run(d.name, func(t *testing.T) {

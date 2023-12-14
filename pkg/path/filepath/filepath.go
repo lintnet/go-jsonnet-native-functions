@@ -1,4 +1,4 @@
-package nativefunc
+package filepath
 
 import (
 	"fmt"
@@ -8,9 +8,9 @@ import (
 	"github.com/google/go-jsonnet/ast"
 )
 
-func filepathBase() *jsonnet.NativeFunction {
+func Base(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
-		Name:   "path/filepath.base",
+		Name:   name,
 		Params: ast.Identifiers{"path"},
 		Func: func(s []interface{}) (interface{}, error) {
 			path, ok := s[0].(string)
