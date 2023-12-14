@@ -43,7 +43,7 @@ func TestMatch(t *testing.T) {
 		d := d
 		t.Run(d.name, func(t *testing.T) {
 			t.Parallel()
-			code := fmt.Sprintf(`std.native("match")("%s", "%s")`, d.pattern, d.s)
+			code := fmt.Sprintf(`std.native("regexp.match")("%s", "%s")`, d.pattern, d.s)
 			result, err := vm.EvaluateAnonymousSnippet("test.jsonnet", code)
 			if err != nil {
 				if d.isErr {

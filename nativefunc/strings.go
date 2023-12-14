@@ -1,6 +1,7 @@
 package nativefunc
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/google/go-jsonnet"
@@ -9,30 +10,50 @@ import (
 
 func Contains() *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
-		Name:   "contains",
+		Name:   "strings.contains",
 		Params: ast.Identifiers{"s", "substr"},
 		Func: func(s []interface{}) (interface{}, error) {
-			return strings.Contains(s[0].(string), s[1].(string)), nil
+			s0, ok := s[0].(string)
+			if !ok {
+				return nil, fmt.Errorf("s must be a string: %v", s[0])
+			}
+			substr, ok := s[1].(string)
+			if !ok {
+				return nil, fmt.Errorf("substr must be a string: %v", s[1])
+			}
+			return strings.Contains(s0, substr), nil
 		},
 	}
 }
 
 func TrimSpace() *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
-		Name:   "trimSpace",
+		Name:   "strings.trimSpace",
 		Params: ast.Identifiers{"s"},
 		Func: func(s []interface{}) (interface{}, error) {
-			return strings.TrimSpace(s[0].(string)), nil
+			s0, ok := s[0].(string)
+			if !ok {
+				return nil, fmt.Errorf("s must be a string: %v", s[0])
+			}
+			return strings.TrimSpace(s0), nil
 		},
 	}
 }
 
 func TrimPrefix() *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
-		Name:   "trimPrefix",
+		Name:   "strings.trimPrefix",
 		Params: ast.Identifiers{"s", "prefix"},
 		Func: func(s []interface{}) (interface{}, error) {
-			return strings.TrimPrefix(s[0].(string), s[1].(string)), nil
+			s0, ok := s[0].(string)
+			if !ok {
+				return nil, fmt.Errorf("s must be a string: %v", s[0])
+			}
+			prefix, ok := s[1].(string)
+			if !ok {
+				return nil, fmt.Errorf("prefix must be a string: %v", s[1])
+			}
+			return strings.TrimPrefix(s0, prefix), nil
 		},
 	}
 }

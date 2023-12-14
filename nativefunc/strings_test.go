@@ -2,7 +2,6 @@ package nativefunc_test
 
 import (
 	"fmt"
-	"log"
 	"strings"
 	"testing"
 
@@ -10,19 +9,7 @@ import (
 	"github.com/suzuki-shunsuke/go-jsonnet-native-functions/nativefunc"
 )
 
-func Example() {
-	vm := jsonnet.MakeVM()
-	vm.NativeFunction(nativefunc.TrimPrefix())
-	code := `std.native("trimPrefix")("foo/v1.0.0", "foo/")`
-	result, err := vm.EvaluateAnonymousSnippet("test.jsonnet", code)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(result)
-	// Output: "v1.0.0"
-}
-
-func TestContains(t *testing.T) {
+func TestContains(t *testing.T) { //nolint:dupl
 	t.Parallel()
 	data := []struct {
 		name   string
@@ -49,7 +36,7 @@ func TestContains(t *testing.T) {
 		d := d
 		t.Run(d.name, func(t *testing.T) {
 			t.Parallel()
-			code := fmt.Sprintf(`std.native("contains")("%s", "%s")`, d.s, d.substr)
+			code := fmt.Sprintf(`std.native("strings.contains")("%s", "%s")`, d.s, d.substr)
 			result, err := vm.EvaluateAnonymousSnippet("test.jsonnet", code)
 			if err != nil {
 				t.Fatal(err)
@@ -62,7 +49,7 @@ func TestContains(t *testing.T) {
 	}
 }
 
-func TestTrimPrefix(t *testing.T) {
+func TestTrimPrefix(t *testing.T) { //nolint:dupl
 	t.Parallel()
 	data := []struct {
 		name   string
@@ -89,7 +76,7 @@ func TestTrimPrefix(t *testing.T) {
 		d := d
 		t.Run(d.name, func(t *testing.T) {
 			t.Parallel()
-			code := fmt.Sprintf(`std.native("trimPrefix")("%s", "%s")`, d.s, d.prefix)
+			code := fmt.Sprintf(`std.native("strings.trimPrefix")("%s", "%s")`, d.s, d.prefix)
 			result, err := vm.EvaluateAnonymousSnippet("test.jsonnet", code)
 			if err != nil {
 				t.Fatal(err)
@@ -123,7 +110,7 @@ func TestTrimSpace(t *testing.T) {
 		d := d
 		t.Run(d.name, func(t *testing.T) {
 			t.Parallel()
-			code := fmt.Sprintf(`std.native("trimSpace")("%s")`, d.s)
+			code := fmt.Sprintf(`std.native("strings.trimSpace")("%s")`, d.s)
 			result, err := vm.EvaluateAnonymousSnippet("test.jsonnet", code)
 			if err != nil {
 				t.Fatal(err)
