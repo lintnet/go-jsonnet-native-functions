@@ -31,7 +31,7 @@ func TestContains(t *testing.T) { //nolint:dupl
 		},
 	}
 	vm := jsonnet.MakeVM()
-	vm.NativeFunction(nativefunc.Contains())
+	nativefunc.SetAll(vm)
 	for _, d := range data {
 		d := d
 		t.Run(d.name, func(t *testing.T) {
@@ -71,7 +71,7 @@ func TestTrimPrefix(t *testing.T) { //nolint:dupl
 		},
 	}
 	vm := jsonnet.MakeVM()
-	vm.NativeFunction(nativefunc.TrimPrefix())
+	nativefunc.SetAll(vm)
 	for _, d := range data {
 		d := d
 		t.Run(d.name, func(t *testing.T) {
@@ -105,7 +105,7 @@ func TestTrimSpace(t *testing.T) {
 		},
 	}
 	vm := jsonnet.MakeVM()
-	vm.NativeFunction(nativefunc.TrimSpace())
+	nativefunc.SetAll(vm)
 	for _, d := range data {
 		d := d
 		t.Run(d.name, func(t *testing.T) {

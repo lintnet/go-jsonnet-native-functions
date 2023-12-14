@@ -8,7 +8,7 @@ import (
 	"github.com/google/go-jsonnet/ast"
 )
 
-func Match() *jsonnet.NativeFunction {
+func regexMatch() *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   "regexp.match",
 		Params: ast.Identifiers{"pattern", "s"},

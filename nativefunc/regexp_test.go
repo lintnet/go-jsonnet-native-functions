@@ -38,7 +38,7 @@ func TestMatch(t *testing.T) {
 		},
 	}
 	vm := jsonnet.MakeVM()
-	vm.NativeFunction(nativefunc.Match())
+	nativefunc.SetAll(vm)
 	for _, d := range data {
 		d := d
 		t.Run(d.name, func(t *testing.T) {
