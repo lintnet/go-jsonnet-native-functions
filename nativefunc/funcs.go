@@ -10,10 +10,13 @@ import (
 var ErrUnknownFunction = errors.New("unknown function")
 
 var funcList = []func() *jsonnet.NativeFunction{ //nolint:gochecknoglobals
+	// NOTICE When you update the list, please update the list in GoDoc (doc.go) too.
 	regexMatch,
 	contains,
 	trimPrefix,
 	trimSpace,
+	filepathBase,
+	// NOTICE When you update the list, please update the list in GoDoc (doc.go) too.
 }
 
 // SetAll sets all Native Functions of this package to VM.
