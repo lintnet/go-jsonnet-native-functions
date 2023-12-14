@@ -14,6 +14,7 @@ var funcList = []func() *jsonnet.NativeFunction{ //nolint:gochecknoglobals
 	contains,
 	trimPrefix,
 	trimSpace,
+	filepathBase,
 }
 
 // SetAll sets all Native Functions of this package to VM.
