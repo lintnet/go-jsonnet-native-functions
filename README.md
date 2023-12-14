@@ -1,11 +1,12 @@
 # go-jsonnet-native-functions
 
-[go-jsonnet](https://github.com/google/go-jsonnet)'s [Native functions](https://pkg.go.dev/github.com/google/go-jsonnet#NativeFunction)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/suzuki-shunsuke/go-jsonnet-native-functions/nativefunc)](https://pkg.go.dev/github.com/suzuki-shunsuke/go-jsonnet-native-functions/nativefunc)
 
-## Motivation
+Go package porting several Go's Standard libraries functions to [go-jsonnet](https://github.com/google/go-jsonnet)'s [Native functions](https://pkg.go.dev/github.com/google/go-jsonnet#NativeFunction)
 
-Jsonnet's Standard Library lacks some useful functions, but go-jsonnet enables us to add functions by Native functions.
-This library provides usefule Native functions.
+## Document
+
+https://pkg.go.dev/github.com/suzuki-shunsuke/go-jsonnet-native-functions/nativefunc
 
 ## LICENSE
 
