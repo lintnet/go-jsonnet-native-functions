@@ -10,14 +10,12 @@ jobs:
       renovate-config-validator: ${{steps.changes.outputs.renovate-config-validator}}
       ghalint: ${{steps.changes.outputs.ghalint}}
       go-mod-tidy: ${{steps.changes.outputs.go-mod-tidy}}
-      nllint: ${{steps.changes.outputs.nllint_files}}
     runs-on: ubuntu-latest
     permissions: {}
     steps:
       - uses: dorny/paths-filter@4512585405083f25c027a35db413c2b3b9006d50 # v2.11.1
         id: changes
         with:
-          list-files: shell
           filters: |
             update-aqua-checksums:
               - aqua/aqua.yaml
@@ -40,10 +38,8 @@ jobs:
               - "**.go"
               - .github/workflows/test.yaml
               - .github/workflows/wc-go-mod-tidy.yaml
-            nllint:
-              - "**"
 
-  enable-automerge:
+  enable-auto-merge:
     uses: ./.github/workflows/wc-enable-auto-merge.yaml
     needs:
       - status-check
@@ -101,11 +97,6 @@ jobs:
     uses: ./.github/workflows/wc-test.yaml
     needs: path-filter
     permissions: {}
-    with:
-      files: ${{needs.path-filter.outputs.nllint}}
-    secrets:
-      gh_app_id: ${{secrets.APP_ID}}
-      gh_app_private_key: ${{secrets.APP_PRIVATE_KEY}}
 
   go-mod-tidy:
     uses: ./.github/workflows/wc-go-mod-tidy.yaml
