@@ -10,7 +10,7 @@ import (
 
 func Example() {
 	vm := jsonnet.MakeVM()
-	vm.NativeFunction(nativefunc.TrimPrefix())
+	nativefunc.SetAll(vm)
 	code := `std.native("strings.trimPrefix")("foo/v1.0.0", "foo/")`
 	result, err := vm.EvaluateAnonymousSnippet("test.jsonnet", code)
 	if err != nil {

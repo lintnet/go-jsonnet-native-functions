@@ -8,7 +8,7 @@ import (
 	"github.com/google/go-jsonnet/ast"
 )
 
-func Contains() *jsonnet.NativeFunction {
+func contains() *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   "strings.contains",
 		Params: ast.Identifiers{"s", "substr"},
@@ -26,7 +26,7 @@ func Contains() *jsonnet.NativeFunction {
 	}
 }
 
-func TrimSpace() *jsonnet.NativeFunction {
+func trimSpace() *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   "strings.trimSpace",
 		Params: ast.Identifiers{"s"},
@@ -40,7 +40,7 @@ func TrimSpace() *jsonnet.NativeFunction {
 	}
 }
 
-func TrimPrefix() *jsonnet.NativeFunction {
+func trimPrefix() *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   "strings.trimPrefix",
 		Params: ast.Identifiers{"s", "prefix"},
