@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/google/go-jsonnet"
-	"github.com/suzuki-shunsuke/go-jsonnet-native-functions/native/path/filepath"
+	"github.com/suzuki-shunsuke/go-jsonnet-native-functions/pkg/path/filepath"
 )
 
 func TestBase(t *testing.T) {

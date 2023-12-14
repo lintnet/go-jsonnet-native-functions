@@ -1,11 +1,11 @@
-package nativefunc_test
+package functions_test
 
 import (
 	"fmt"
 	"log"
 
 	"github.com/google/go-jsonnet"
-	"github.com/suzuki-shunsuke/go-jsonnet-native-functions/native/strings"
+	"github.com/suzuki-shunsuke/go-jsonnet-native-functions/pkg/strings"
 )
 
 func Example() {

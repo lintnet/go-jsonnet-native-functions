@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/google/go-jsonnet"
-	nstrings "github.com/suzuki-shunsuke/go-jsonnet-native-functions/native/strings"
+	nstrings "github.com/suzuki-shunsuke/go-jsonnet-native-functions/pkg/strings"
 )
 
 func TestContains(t *testing.T) { //nolint:dupl

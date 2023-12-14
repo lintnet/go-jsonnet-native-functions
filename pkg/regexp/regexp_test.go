@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/google/go-jsonnet"
-	"github.com/suzuki-shunsuke/go-jsonnet-native-functions/native/regexp"
+	"github.com/suzuki-shunsuke/go-jsonnet-native-functions/pkg/regexp"
 )
 
 func TestMatch(t *testing.T) {
