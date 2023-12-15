@@ -1,6 +1,6 @@
 # go-jsonnet-native-functions
 
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/suzuki-shunsuke/go-jsonnet-native-functions/nativefunc)](https://pkg.go.dev/github.com/suzuki-shunsuke/go-jsonnet-native-functions/nativefunc)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/suzuki-shunsuke/go-jsonnet-native-functions)](https://pkg.go.dev/github.com/suzuki-shunsuke/go-jsonnet-native-functions)
 
 Go package porting several Go's Standard libraries to [go-jsonnet](https://github.com/google/go-jsonnet)'s [native functions](https://pkg.go.dev/github.com/google/go-jsonnet#NativeFunction)
 
