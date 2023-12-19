@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/google/go-jsonnet"
-	"github.com/suzuki-shunsuke/go-jsonnet-native-functions/pkg/strings"
+	"github.com/lintnet/go-jsonnet-native-functions/pkg/strings"
 )
 
 func Example() {
