@@ -1,4 +1,4 @@
-module github.com/suzuki-shunsuke/go-jsonnet-native-functions
+module github.com/lintnet/go-jsonnet-native-functions
 
 go 1.21.5
 
