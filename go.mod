@@ -1,6 +1,6 @@
 module github.com/lintnet/go-jsonnet-native-functions
 
-go 1.22.0
+go 1.22.1
 
 require github.com/google/go-jsonnet v0.20.0
 
