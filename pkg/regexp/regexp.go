@@ -21,7 +21,7 @@ func MatchString(name string) *jsonnet.NativeFunction {
 			if !ok {
 				return nil, fmt.Errorf("s must be a string: %v", s[1])
 			}
-			return regexp.MatchString(pattern, s1) //nolint:wrapcheck
+			return regexp.MatchString(pattern, s1)
 		},
 	}
 }
