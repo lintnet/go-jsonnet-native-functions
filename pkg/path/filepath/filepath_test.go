@@ -26,7 +26,6 @@ func TestBase(t *testing.T) {
 	vm.NativeFunction(filepath.Base("path/filepath.base"))
 
 	for _, d := range data {
-		d := d
 		t.Run(d.name, func(t *testing.T) {
 			t.Parallel()
 			code := fmt.Sprintf(`std.native("path/filepath.base")("%s")`, d.path)
