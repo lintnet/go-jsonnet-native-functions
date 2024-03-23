@@ -40,7 +40,6 @@ func TestMatch(t *testing.T) {
 	vm := jsonnet.MakeVM()
 	vm.NativeFunction(regexp.MatchString("regexp.match"))
 	for _, d := range data {
-		d := d
 		t.Run(d.name, func(t *testing.T) {
 			t.Parallel()
 			code := fmt.Sprintf(`std.native("regexp.match")("%s", "%s")`, d.pattern, d.s)

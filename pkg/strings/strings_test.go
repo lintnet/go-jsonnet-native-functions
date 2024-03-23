@@ -33,7 +33,6 @@ func TestContains(t *testing.T) { //nolint:dupl
 	vm := jsonnet.MakeVM()
 	vm.NativeFunction(nstrings.Contains("strings.contains"))
 	for _, d := range data {
-		d := d
 		t.Run(d.name, func(t *testing.T) {
 			t.Parallel()
 			code := fmt.Sprintf(`std.native("strings.contains")("%s", "%s")`, d.s, d.substr)
@@ -73,7 +72,6 @@ func TestTrimPrefix(t *testing.T) { //nolint:dupl
 	vm := jsonnet.MakeVM()
 	vm.NativeFunction(nstrings.TrimPrefix("strings.trimPrefix"))
 	for _, d := range data {
-		d := d
 		t.Run(d.name, func(t *testing.T) {
 			t.Parallel()
 			code := fmt.Sprintf(`std.native("strings.trimPrefix")("%s", "%s")`, d.s, d.prefix)
@@ -107,7 +105,6 @@ func TestTrimSpace(t *testing.T) {
 	vm := jsonnet.MakeVM()
 	vm.NativeFunction(nstrings.TrimSpace("strings.trimSpace"))
 	for _, d := range data {
-		d := d
 		t.Run(d.name, func(t *testing.T) {
 			t.Parallel()
 			code := fmt.Sprintf(`std.native("strings.trimSpace")("%s")`, d.s)
