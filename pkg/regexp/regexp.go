@@ -45,7 +45,7 @@ func MatchStringReturnArray(name string) *jsonnet.NativeFunction {
 			}
 			a, err := regexp.MatchString(pattern, s1)
 			if err != nil {
-				return []any{
+				return []any{ //nolint:nilerr
 					a, err.Error(),
 				}, nil
 			}
