@@ -110,6 +110,12 @@ There are several ways to achieve it, but we think returning an array is the mos
 
 The exception is functions return not an array but a single error object if they need to return only an error.
 
+## Does this library port third party Go libraries?
+
+No. This library ports only Go's standard library.
+This is because we don't want to depend on third party libraries other than github.com/google/go-jsonnet.
+If we want to port third party Go libraries, we would create other repositories.
+
 ## LICENSE
 
 [MIT](LICENSE)
