@@ -15,13 +15,21 @@ func Contains(name string) *jsonnet.NativeFunction {
 		Func: func(s []interface{}) (interface{}, error) {
 			s0, ok := s[0].(string)
 			if !ok {
-				return nil, fmt.Errorf("s must be a string: %v", s[0])
+				return []any{
+					false, map[string]any{
+						"message": fmt.Sprintf("s must be a string: %v", s[0]),
+					},
+				}, nil
 			}
 			substr, ok := s[1].(string)
 			if !ok {
-				return nil, fmt.Errorf("substr must be a string: %v", s[1])
+				return []any{
+					false, map[string]any{
+						"message": fmt.Sprintf("substr must be a string: %v", s[1]),
+					},
+				}, nil
 			}
-			return strings.Contains(s0, substr), nil
+			return []any{strings.Contains(s0, substr), nil}, nil
 		},
 	}
 }
@@ -33,9 +41,13 @@ func TrimSpace(name string) *jsonnet.NativeFunction {
 		Func: func(s []interface{}) (interface{}, error) {
 			s0, ok := s[0].(string)
 			if !ok {
-				return nil, fmt.Errorf("s must be a string: %v", s[0])
+				return []any{
+					"", map[string]any{
+						"message": fmt.Sprintf("s must be a string: %v", s[0]),
+					},
+				}, nil
 			}
-			return strings.TrimSpace(s0), nil
+			return []any{strings.TrimSpace(s0), nil}, nil
 		},
 	}
 }
@@ -47,13 +59,21 @@ func TrimPrefix(name string) *jsonnet.NativeFunction {
 		Func: func(s []interface{}) (interface{}, error) {
 			s0, ok := s[0].(string)
 			if !ok {
-				return nil, fmt.Errorf("s must be a string: %v", s[0])
+				return []any{
+					"", map[string]any{
+						"message": fmt.Sprintf("s must be a string: %v", s[0]),
+					},
+				}, nil
 			}
 			prefix, ok := s[1].(string)
 			if !ok {
-				return nil, fmt.Errorf("prefix must be a string: %v", s[1])
+				return []any{
+					"", map[string]any{
+						"message": fmt.Sprintf("prefix must be a string: %v", s[1]),
+					},
+				}, nil
 			}
-			return strings.TrimPrefix(s0, prefix), nil
+			return []any{strings.TrimPrefix(s0, prefix), nil}, nil
 		},
 	}
 }

@@ -1,6 +1,7 @@
 package filepath_test
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 
@@ -16,6 +17,10 @@ func Example() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(result)
-	// Output: "hello.txt"
+	var a []any
+	if err := json.Unmarshal([]byte(result), &a); err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%v %v\n", a[0], a[1])
+	// Output: hello.txt <nil>
 }

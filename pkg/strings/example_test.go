@@ -1,6 +1,7 @@
 package strings_test
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 
@@ -16,6 +17,10 @@ func Example() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(result)
-	// Output: "v1.0.0"
+	var a []any
+	if err := json.Unmarshal([]byte(result), &a); err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%v %v\n", a[0], a[1])
+	// Output: v1.0.0 <nil>
 }
