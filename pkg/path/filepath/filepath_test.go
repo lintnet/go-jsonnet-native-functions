@@ -7,19 +7,25 @@ import (
 	"github.com/google/go-jsonnet"
 	"github.com/lintnet/go-jsonnet-native-functions/pkg/path/filepath"
 	"github.com/lintnet/go-jsonnet-native-functions/testutil"
+	"github.com/lintnet/go-jsonnet-native-functions/util"
 )
 
 func TestBase(t *testing.T) {
 	t.Parallel()
 	data := []struct {
 		name string
-		path string
+		path any
 		exp  []any
 	}{
 		{
-			name: "true",
-			path: "foo/hello.txt",
+			name: "normal",
+			path: `"foo/hello.txt"`,
 			exp:  []any{"hello.txt", nil},
+		},
+		{
+			name: "path must be a string",
+			path: 0,
+			exp:  []any{"", util.NewError("path must be a string: 0")},
 		},
 	}
 	vm := jsonnet.MakeVM()
@@ -28,7 +34,7 @@ func TestBase(t *testing.T) {
 	for _, d := range data {
 		t.Run(d.name, func(t *testing.T) {
 			t.Parallel()
-			code := fmt.Sprintf(`std.native("path/filepath.base")("%s")`, d.path)
+			code := fmt.Sprintf(`std.native("path/filepath.base")(%v)`, d.path)
 			testutil.Check(t, vm, code, d.exp)
 		})
 	}
