@@ -15,9 +15,11 @@ func Base(name string) *jsonnet.NativeFunction {
 		Func: func(s []interface{}) (interface{}, error) {
 			path, ok := s[0].(string)
 			if !ok {
-				return nil, fmt.Errorf("path must be a string: %v", s[0])
+				return []any{"", map[string]any{
+					"message": fmt.Sprintf("path must be a string: %v", s[0]),
+				}}, nil
 			}
-			return filepath.Base(path), nil
+			return []any{filepath.Base(path), nil}, nil
 		},
 	}
 }

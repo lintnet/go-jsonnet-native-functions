@@ -8,6 +8,12 @@ import (
 	"github.com/google/go-jsonnet/ast"
 )
 
+func toErr(s string) map[string]any {
+	return map[string]any{
+		"message": s,
+	}
+}
+
 func MatchString(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
@@ -16,19 +22,19 @@ func MatchString(name string) *jsonnet.NativeFunction {
 			pattern, ok := s[0].(string)
 			if !ok {
 				return []any{
-					false, fmt.Sprintf("pattern must be a string: %v", s[0]),
+					false, toErr(fmt.Sprintf("pattern must be a string: %v", s[0])),
 				}, nil
 			}
 			s1, ok := s[1].(string)
 			if !ok {
 				return []any{
-					false, fmt.Sprintf("s must be a string: %v", s[1]),
+					false, toErr(fmt.Sprintf("s must be a string: %v", s[1])),
 				}, nil
 			}
 			a, err := regexp.MatchString(pattern, s1)
 			if err != nil {
-				return []any{ //nolint:nilerr
-					a, err.Error(),
+				return []any{
+					a, toErr(err.Error()),
 				}, nil
 			}
 			return []any{

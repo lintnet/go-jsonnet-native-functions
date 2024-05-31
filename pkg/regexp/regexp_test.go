@@ -1,13 +1,12 @@
 package regexp_test
 
 import (
-	"encoding/json"
 	"fmt"
-	"reflect"
 	"testing"
 
 	"github.com/google/go-jsonnet"
 	"github.com/lintnet/go-jsonnet-native-functions/pkg/regexp"
+	"github.com/lintnet/go-jsonnet-native-functions/testutil"
 )
 
 func TestMatchString(t *testing.T) {
@@ -35,7 +34,11 @@ func TestMatchString(t *testing.T) {
 			name:    "invalid regular expression",
 			pattern: "*",
 			s:       "hello",
-			exp:     []any{false, "error parsing regexp: missing argument to repetition operator: `*`"},
+			exp: []any{
+				false, map[string]any{
+					"message": "error parsing regexp: missing argument to repetition operator: `*`",
+				},
+			},
 		},
 	}
 	vm := jsonnet.MakeVM()
@@ -44,23 +47,7 @@ func TestMatchString(t *testing.T) {
 		t.Run(d.name, func(t *testing.T) {
 			t.Parallel()
 			code := fmt.Sprintf(`std.native("regexp.match")("%s", "%s")`, d.pattern, d.s)
-			result, err := vm.EvaluateAnonymousSnippet("test.jsonnet", code)
-			if err != nil {
-				if d.isErr {
-					return
-				}
-				t.Fatal(err)
-			}
-			if d.isErr {
-				t.Fatal("error must be returned")
-			}
-			var a any
-			if err := json.Unmarshal([]byte(result), &a); err != nil {
-				t.Fatal(err)
-			}
-			if !reflect.DeepEqual(a, d.exp) {
-				t.Fatalf(`wanted "%v", got "%v"`, d.exp, a)
-			}
+			testutil.Check(t, vm, code, d.exp)
 		})
 	}
 }

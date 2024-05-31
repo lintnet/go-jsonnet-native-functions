@@ -2,11 +2,11 @@ package filepath_test
 
 import (
 	"fmt"
-	"strings"
 	"testing"
 
 	"github.com/google/go-jsonnet"
 	"github.com/lintnet/go-jsonnet-native-functions/pkg/path/filepath"
+	"github.com/lintnet/go-jsonnet-native-functions/testutil"
 )
 
 func TestBase(t *testing.T) {
@@ -14,12 +14,12 @@ func TestBase(t *testing.T) {
 	data := []struct {
 		name string
 		path string
-		exp  string
+		exp  []any
 	}{
 		{
 			name: "true",
 			path: "foo/hello.txt",
-			exp:  `"hello.txt"`,
+			exp:  []any{"hello.txt", nil},
 		},
 	}
 	vm := jsonnet.MakeVM()
@@ -29,14 +29,7 @@ func TestBase(t *testing.T) {
 		t.Run(d.name, func(t *testing.T) {
 			t.Parallel()
 			code := fmt.Sprintf(`std.native("path/filepath.base")("%s")`, d.path)
-			result, err := vm.EvaluateAnonymousSnippet("test.jsonnet", code)
-			if err != nil {
-				t.Fatal(err)
-			}
-			trimmedResult := strings.TrimSpace(result)
-			if trimmedResult != d.exp {
-				t.Fatalf(`wanted "%s", got "%s"`, d.exp, trimmedResult)
-			}
+			testutil.Check(t, vm, code, d.exp)
 		})
 	}
 }
