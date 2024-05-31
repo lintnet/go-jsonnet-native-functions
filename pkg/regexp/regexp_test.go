@@ -92,7 +92,7 @@ func TestMatchStringByArray(t *testing.T) {
 		},
 	}
 	vm := jsonnet.MakeVM()
-	vm.NativeFunction(regexp.MatchStringByArray("regexp.match"))
+	vm.NativeFunction(regexp.MatchStringReturnArray("regexp.match"))
 	for _, d := range data {
 		t.Run(d.name, func(t *testing.T) {
 			t.Parallel()

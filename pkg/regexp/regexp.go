@@ -26,7 +26,7 @@ func MatchString(name string) *jsonnet.NativeFunction {
 	}
 }
 
-func MatchStringByArray(name string) *jsonnet.NativeFunction {
+func MatchStringReturnArray(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
 		Params: ast.Identifiers{"pattern", "s"},
