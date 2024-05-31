@@ -15,13 +15,25 @@ func MatchString(name string) *jsonnet.NativeFunction {
 		Func: func(s []interface{}) (interface{}, error) {
 			pattern, ok := s[0].(string)
 			if !ok {
-				return nil, fmt.Errorf("pattern must be a string: %v", s[0])
+				return []any{
+					false, fmt.Sprintf("pattern must be a string: %v", s[0]),
+				}, nil
 			}
 			s1, ok := s[1].(string)
 			if !ok {
-				return nil, fmt.Errorf("s must be a string: %v", s[1])
+				return []any{
+					false, fmt.Sprintf("s must be a string: %v", s[1]),
+				}, nil
 			}
-			return regexp.MatchString(pattern, s1)
+			a, err := regexp.MatchString(pattern, s1)
+			if err != nil {
+				return []any{ //nolint:nilerr
+					a, err.Error(),
+				}, nil
+			}
+			return []any{
+				a, nil,
+			}, nil
 		},
 	}
 }
