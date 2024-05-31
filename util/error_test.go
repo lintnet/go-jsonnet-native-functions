@@ -8,6 +8,7 @@ import (
 )
 
 func TestNewError(t *testing.T) {
+	t.Parallel()
 	act := util.NewError("test error")
 	exp := map[string]any{"message": "test error"}
 	if !reflect.DeepEqual(act, exp) {
@@ -16,6 +17,7 @@ func TestNewError(t *testing.T) {
 }
 
 func TestNewErrorf(t *testing.T) {
+	t.Parallel()
 	act := util.NewErrorf("s must be a string: %v", 0)
 	exp := map[string]any{"message": "s must be a string: 0"}
 	if !reflect.DeepEqual(act, exp) {
