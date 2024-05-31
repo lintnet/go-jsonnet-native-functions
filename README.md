@@ -43,10 +43,78 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(result)
-	// Output: "v1.0.0"
+	fmt.Println(result) // ["v1.0.0", null]
 }
 ```
+
+## API design
+
+Basically, native functions of this library don't raise errors.
+Instead, they return an array to return multiple values and an error same as Go's functions.
+
+For example, `strings.TrimPrefix` returns an array whose first element is a trimmed string and second element is an object representing an error.
+
+If there is no error, the error object is `null`.
+
+```go
+vm.NativeFunction(strings.TrimPrefix("trimPrefix"))
+
+// `["v1.0.0", null]`, nil
+result, err := vm.EvaluateAnonymousSnippet("test.jsonnet", `std.native("trimPrefix")("foo/v1.0.0", "foo/")`)
+```
+
+If there is an error, the error object isn't `null`.
+
+```go
+vm.NativeFunction(strings.TrimPrefix("trimPrefix"))
+
+// `["", {"message": "substr must be a string: true"}]`, nil
+result2, err2 := vm.EvaluateAnonymousSnippet("test.jsonnet", `std.native("trimPrefix")("foo/v1.0.0", true)`)
+```
+
+An error object has a string field `message`.
+
+```json
+{"message": "substr must be a string: true"}
+```
+
+Even if Go functions don't return an error, native function's return value has an error object if argument types are invalid.
+For example, arguments of `strings.TrimPrefix` must be strings but non string objects can be passed to the function in Jsonnet.
+
+```go
+result2, err2 := vm.EvaluateAnonymousSnippet("test.jsonnet", `std.native("trimPrefix")("foo/v1.0.0", true)`)
+```
+
+In that case, the return value has an error object.
+
+```json
+[
+  "",
+  {
+    "message": "substr must be a string: true"
+  }
+]
+```
+
+### Why don't these functions raise an error?
+
+Jsonnet doesn't support catching errors. [google/jsonnet#415](https://github.com/google/jsonnet/issues/415)
+So if these functions raise an error, there is no way to handle the error in Jsonnet.
+We think we should be able to handle errors ourselves, so we decided not to raise an error.
+
+### Why do these functions return an array?
+
+Jsonnet functions can't return multiple values, but Go functions can.
+So if we want to return multiple values in Jsonnet, we need to embed them into a single object somehow.
+There are several ways to achieve it, but we think returning an array is the most simplest way.
+
+The exception is functions return not an array but a single error object if they need to return only an error.
+
+## Does this library port third party Go libraries?
+
+No. This library ports only Go's standard library.
+This is because we don't want to depend on third party libraries other than github.com/google/go-jsonnet.
+If we want to port third party Go libraries, we would create other repositories.
 
 ## LICENSE
 
