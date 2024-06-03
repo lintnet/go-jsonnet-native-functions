@@ -290,6 +290,7 @@ func Replace(name string) *jsonnet.NativeFunction {
 	}
 }
 
+// Deprecated: Use std.trim(str) instead.
 func TrimSpace(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
