@@ -30,6 +30,28 @@ func Contains(name string) *jsonnet.NativeFunction {
 	}
 }
 
+func ContainsAny(name string) *jsonnet.NativeFunction {
+	return &jsonnet.NativeFunction{
+		Name:   name,
+		Params: ast.Identifiers{"s", "chars"},
+		Func: func(s []interface{}) (interface{}, error) {
+			s0, ok := s[0].(string)
+			if !ok {
+				return []any{
+					false, util.NewErrorf("s must be a string: %v", s[0]),
+				}, nil
+			}
+			chars, ok := s[1].(string)
+			if !ok {
+				return []any{
+					false, util.NewErrorf("chars must be a string: %v", s[1]),
+				}, nil
+			}
+			return []any{strings.ContainsAny(s0, chars), nil}, nil
+		},
+	}
+}
+
 func TrimSpace(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,

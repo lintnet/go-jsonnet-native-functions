@@ -54,6 +54,50 @@ func TestContains(t *testing.T) {
 	}
 }
 
+func TestContainsAny(t *testing.T) {
+	t.Parallel()
+	data := []struct {
+		name  string
+		s     any
+		chars any
+		exp   []any
+	}{
+		{
+			name:  "true",
+			s:     `"hello"`,
+			chars: `"ol"`,
+			exp:   []any{true, nil},
+		},
+		{
+			name:  "false",
+			s:     `"hello"`,
+			chars: `"na"`,
+			exp:   []any{false, nil},
+		},
+		{
+			name:  "s must be a string",
+			s:     0,
+			chars: `"no"`,
+			exp:   []any{false, util.NewError("s must be a string: 0")},
+		},
+		{
+			name:  "chars must be a string",
+			s:     `"hello"`,
+			chars: 0,
+			exp:   []any{false, util.NewError("chars must be a string: 0")},
+		},
+	}
+	vm := jsonnet.MakeVM()
+	vm.NativeFunction(nstrings.ContainsAny("strings.containsAny"))
+	for _, d := range data {
+		t.Run(d.name, func(t *testing.T) {
+			t.Parallel()
+			code := fmt.Sprintf(`std.native("strings.containsAny")(%v, %v)`, d.s, d.chars)
+			testutil.Check(t, vm, code, d.exp)
+		})
+	}
+}
+
 func TestTrimPrefix(t *testing.T) {
 	t.Parallel()
 	data := []struct {
