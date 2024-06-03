@@ -12,7 +12,7 @@ func MatchString(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
 		Params: ast.Identifiers{"pattern", "s"},
-		Func: func(s []interface{}) (interface{}, error) {
+		Func: func(s []any) (any, error) {
 			pattern, ok := s[0].(string)
 			if !ok {
 				return []any{
