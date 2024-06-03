@@ -31,7 +31,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/google/go-jsonnet"
+	"github.com/lintnet/go-jsonnet" // Fork google/go-jsonnet
 	"github.com/lintnet/go-jsonnet-native-functions/pkg/strings"
 )
 
@@ -109,6 +109,14 @@ So if we want to return multiple values in Jsonnet, we need to embed them into a
 There are several ways to achieve it, but we think returning an array is the most simplest way.
 
 The exception is functions return not an array but a single error object if they need to return only an error.
+
+## :warning: Some functions don't work with google/go-jsonnet
+
+Some functions don't work with google/go-jsonnet due to bugs of google/go-jsonnet.
+So please use [lintnet/go-jsonnet](https://github.com/lintnet/go-jsonnet) instead.
+lintnet/go-jsonnet is a fork of google/go-jsonnet.
+lintent/go-jsonnet is compatible with google/go-jsonnet, but includes some bug fixes.
+Please see [lintnet/go-jsonnet#2](https://github.com/lintnet/go-jsonnet/issues/2).
 
 ## Does this library port third party Go libraries?
 
