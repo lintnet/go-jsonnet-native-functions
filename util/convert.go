@@ -1,6 +1,9 @@
 package util
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func ConvertToInt(s any) (int, error) {
 	var count int
@@ -11,11 +14,11 @@ func ConvertToInt(s any) (int, error) {
 		return int(v), nil
 	case float64:
 		count = int(v)
-		if fmt.Sprintf("%d", count) != fmt.Sprintf("%v", v) {
-			return 0, fmt.Errorf("the value must not be a float64: %v", s)
+		if strconv.Itoa(count) != fmt.Sprintf("%v", v) {
+			return 0, fmt.Errorf("the value must not be a float64: %v", s) //nolint:err113
 		}
 		return count, nil
 	default:
-		return 0, fmt.Errorf("the value must be an int: %v", s)
+		return 0, fmt.Errorf("the value must be an int: %v", s) //nolint:err113
 	}
 }

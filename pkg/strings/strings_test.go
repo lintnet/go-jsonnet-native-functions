@@ -1,3 +1,4 @@
+//nolint:dupl,funlen
 package strings_test
 
 import (
@@ -501,7 +502,7 @@ func TestReplace(t *testing.T) {
 			old:  `"k"`,
 			new:  `"ky"`,
 			n:    2,
-			exp:  []any{"oinky oinky oink", nil},
+			exp:  []any{"oinky oinky oink", nil}, //nolint:dupword
 		},
 		{
 			name: "s must be a string",

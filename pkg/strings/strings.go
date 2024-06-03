@@ -247,7 +247,7 @@ func Repeat(name string) *jsonnet.NativeFunction {
 			}
 			count, err := util.ConvertToInt(s[1])
 			if err != nil {
-				return []any{
+				return []any{ //nolint:nilerr
 					"", util.NewError("count is invalid: " + err.Error()),
 				}, nil
 			}
@@ -281,7 +281,7 @@ func Replace(name string) *jsonnet.NativeFunction {
 			}
 			n, err := util.ConvertToInt(s[3])
 			if err != nil {
-				return []any{
+				return []any{ //nolint:nilerr
 					"", util.NewError("n is invalid: " + err.Error()),
 				}, nil
 			}
