@@ -12,7 +12,7 @@ func Base(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
 		Params: ast.Identifiers{"path"},
-		Func: func(s []interface{}) (interface{}, error) {
+		Func: func(s []any) (any, error) {
 			path, ok := s[0].(string)
 			if !ok {
 				return []any{

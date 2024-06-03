@@ -12,11 +12,11 @@ func Check(t *testing.T, vm *jsonnet.VM, code string, exp []any) {
 	t.Helper()
 	result, err := vm.EvaluateAnonymousSnippet("test.jsonnet", code)
 	if err != nil {
-		t.Fatal(err)
+		t.Fatal("vm.EvaluateAnonymousSnippet:", err)
 	}
 	var a []any
 	if err := json.Unmarshal([]byte(result), &a); err != nil {
-		t.Fatal(err)
+		t.Fatal("json.Unmarshal:", err)
 	}
 	if !reflect.DeepEqual(a, exp) {
 		t.Fatalf(`wanted "%v", got "%v"`, exp, a)
