@@ -43,7 +43,7 @@ jobs:
   status-check:
     # This job is used for main branch's branch protection rule's status check.
     # If all dependent jobs succeed or are skipped this job succeeds.
-    timeout-minutes: 30
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     permissions: {}
     if: always()
@@ -52,6 +52,7 @@ jobs:
         with:
           needs: ${{ toJson(needs) }}
     needs:
+      - path-filter
       - renovate-config-validator
       - update-aqua-checksums
       - ghalint
