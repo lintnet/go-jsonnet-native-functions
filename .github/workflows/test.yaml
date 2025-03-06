@@ -5,7 +5,7 @@ permissions: {}
 jobs:
   path-filter:
     # Get changed files to filter jobs
-    timeout-minutes: 30
+    timeout-minutes: 10
     outputs:
       update-aqua-checksums: ${{steps.changes.outputs.update-aqua-checksums}}
       renovate-config-validator: ${{steps.changes.outputs.renovate-config-validator}}
@@ -39,25 +39,6 @@ jobs:
               - "**.go"
               - .github/workflows/test.yaml
               - .github/workflows/wc-go-mod-tidy.yaml
-
-  status-check:
-    # This job is used for main branch's branch protection rule's status check.
-    # If all dependent jobs succeed or are skipped this job succeeds.
-    timeout-minutes: 10
-    runs-on: ubuntu-latest
-    permissions: {}
-    if: always()
-    steps:
-      - uses: suzuki-shunsuke/required-status-check-action@2b5a46064846b09381852c2c4217e898f639e768 # v0.1.3
-        with:
-          needs: ${{ toJson(needs) }}
-    needs:
-      - path-filter
-      - renovate-config-validator
-      - update-aqua-checksums
-      - ghalint
-      - test
-      - go-mod-tidy
 
   renovate-config-validator:
     uses: ./.github/workflows/wc-renovate-config-validator.yaml
