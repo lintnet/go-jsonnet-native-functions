@@ -8,10 +8,12 @@ import (
 	"github.com/lintnet/go-jsonnet-native-functions/util"
 )
 
+const paramPath = "path"
+
 func Base(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
-		Params: ast.Identifiers{"path"},
+		Params: ast.Identifiers{paramPath},
 		Func: func(s []any) (any, error) {
 			p, ok := s[0].(string)
 			if !ok {
@@ -27,7 +29,7 @@ func Base(name string) *jsonnet.NativeFunction {
 func Clean(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
-		Params: ast.Identifiers{"path"},
+		Params: ast.Identifiers{paramPath},
 		Func: func(s []any) (any, error) {
 			p, ok := s[0].(string)
 			if !ok {
@@ -43,7 +45,7 @@ func Clean(name string) *jsonnet.NativeFunction {
 func Dir(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
-		Params: ast.Identifiers{"path"},
+		Params: ast.Identifiers{paramPath},
 		Func: func(s []any) (any, error) {
 			p, ok := s[0].(string)
 			if !ok {
@@ -59,7 +61,7 @@ func Dir(name string) *jsonnet.NativeFunction {
 func Ext(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
-		Params: ast.Identifiers{"path"},
+		Params: ast.Identifiers{paramPath},
 		Func: func(s []any) (any, error) {
 			p, ok := s[0].(string)
 			if !ok {
@@ -75,7 +77,7 @@ func Ext(name string) *jsonnet.NativeFunction {
 func IsAbs(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
-		Params: ast.Identifiers{"path"},
+		Params: ast.Identifiers{paramPath},
 		Func: func(s []any) (any, error) {
 			p, ok := s[0].(string)
 			if !ok {
@@ -119,7 +121,7 @@ func Match(name string) *jsonnet.NativeFunction {
 func Split(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
-		Params: ast.Identifiers{"path"},
+		Params: ast.Identifiers{paramPath},
 		Func: func(s []any) (any, error) {
 			p, ok := s[0].(string)
 			if !ok {
