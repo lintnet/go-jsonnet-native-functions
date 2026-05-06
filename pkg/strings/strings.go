@@ -8,10 +8,12 @@ import (
 	"github.com/lintnet/go-jsonnet-native-functions/util"
 )
 
+const paramSubstr = "substr"
+
 func Contains(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
-		Params: ast.Identifiers{"s", "substr"},
+		Params: ast.Identifiers{"s", paramSubstr},
 		Func: func(s []any) (any, error) {
 			s0, ok := s[0].(string)
 			if !ok {
@@ -55,7 +57,7 @@ func ContainsAny(name string) *jsonnet.NativeFunction {
 func Count(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
-		Params: ast.Identifiers{"s", "substr"},
+		Params: ast.Identifiers{"s", paramSubstr},
 		Func: func(s []any) (any, error) {
 			s0, ok := s[0].(string)
 			if !ok {
@@ -193,7 +195,7 @@ func Fields(name string) *jsonnet.NativeFunction {
 func LastIndex(name string) *jsonnet.NativeFunction {
 	return &jsonnet.NativeFunction{
 		Name:   name,
-		Params: ast.Identifiers{"s", "substr"},
+		Params: ast.Identifiers{"s", paramSubstr},
 		Func: func(s []any) (any, error) {
 			s0, ok := s[0].(string)
 			if !ok {
