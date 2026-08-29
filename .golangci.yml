@@ -5,6 +5,7 @@ linters:
     - depguard
     - exhaustive
     - exhaustruct
+    - exhaustruct_v5
     - godot
     - godox
     - gomoddirectives
