@@ -2,7 +2,7 @@ module github.com/lintnet/go-jsonnet-native-functions
 
 go 1.25.0
 
-toolchain go1.27.0
+toolchain go1.27.1
 
 require github.com/google/go-jsonnet v0.22.0
 
