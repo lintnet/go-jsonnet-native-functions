@@ -19,7 +19,7 @@ workflows:
         - 'actions/checkout@v7.0.1'
         - 'actions/setup-go@v7.0.0'
         - 'aquaproj/aqua-installer@v4.1.1'
-        - 'flatt-security/setup-takumi-guard-golang@2e3c7c40b538cd68b2ac483def12982ebc8bc02e'
+        - 'flatt-security/setup-takumi-guard-golang@v1.3.0'
     '.github/workflows/workflow_call_test.yaml':
         - 'dorny/paths-filter@v4.0.3'
 dependencies:
@@ -43,9 +43,9 @@ dependencies:
         commit: 'sha1-ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d'
         owner_id: 1588572
         repo_id: 265601040
-    'flatt-security/setup-takumi-guard-golang@2e3c7c40b538cd68b2ac483def12982ebc8bc02e':
-        ref: 'main'
-        commit: 'sha1-2e3c7c40b538cd68b2ac483def12982ebc8bc02e'
+    'flatt-security/setup-takumi-guard-golang@v1.3.0':
+        ref: 'v1.3.0'
+        commit: 'sha1-02545d3425218766aac4dca114dcc3f6eaa0df4a'
         owner_id: 88821409
         repo_id: 1244014855
     'suzuki-shunsuke/actionlint-action@v0.2.2':
